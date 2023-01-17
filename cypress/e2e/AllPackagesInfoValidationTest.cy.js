@@ -1,4 +1,5 @@
-  import { BasePage } from "./POM/Base_Page"
+  import { it } from "mocha";
+import { BasePage } from "./POM/Base_Page"
   import { HomePage } from "./POM/Home_Page";
   import { PricingPage } from "./POM/Pricing_Page";
 
@@ -18,7 +19,7 @@
     // returning false here prevents Cypress from
     // failing the test
     return false
-    
+
   })
 
   it('fails to visit website EasyGen', function () {
@@ -38,17 +39,50 @@
 
   pricingpage.assertPricingPageUrl(); 
   pricingpage.assertEuroCurrencySelected();
+
+  //pro package
+
   pricingpage.assertProPackageName();
   pricingpage.assertProPackageMonthlyPrice();
   pricingpage.assertProPackageAnnualPrice();
   pricingpage.assertPresenceOfTrialLinkProPackage();
-
+ 
   
   })
 
+it('Team package currency selected, name, monthly & annual pricing + trial link validation', ()=> {
 
 
+  homepage.clickPricingLink();
 
+  pricingpage.assertPricingPageUrl(); 
+  pricingpage.assertEuroCurrencySelected();
+
+  //Team Package
+
+  pricingpage.assertBestValueTextOnTeamPackage();
+  pricingpage.assertTeamPackageName();
+  pricingpage.assertTeamPackageMonthlyPrice();
+  pricingpage.assertProPackageAnnualPrice();
+  pricingpage.assertTeamPackageTrialLink();
+
+})
+
+it('Enterprice package currency selected, name, monthly & annual pricing + trial link validation', ()=> {
+
+  homepage.clickPricingLink();
+
+  pricingpage.assertPricingPageUrl(); 
+  pricingpage.assertEuroCurrencySelected();
+
+//Enterprise Package
+
+pricingpage.assertEnterprisePackageName();
+pricingpage.assertEnterprisePackageContactText();
+pricingpage.assertEnterprisePackageContactLink();
+
+
+})
 
 
 
